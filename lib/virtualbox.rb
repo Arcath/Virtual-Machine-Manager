@@ -32,4 +32,25 @@ class VirtualMachine
 	def self.off
 		all - on
 	end
+	
+	def self.start(vm)
+		system("screen -d -m -S VBOXVM-#{vm.gsub(" ","-")} VBoxHeadless -s \"#{vm}\"")
+	end
+	
+	def self.terminate(vm)
+		system("screen -ls > /tmp/screenlist.tmp")
+		f=File.new("/tmp/screenlist.tmp", "r")
+		begin
+			while (line = f.readline)
+				pid=line.scan(/\t(.*?)\.VBOXVM-#{vm.gsub(" ","-")}/) if line =~ /VBOXVM-#{vm.gsub(" ","-")}/
+			end
+		rescue EOFError
+			f.close
+		end
+		if pid then
+			
+		else
+			puts "Its Okay, Couldn't find the vm \"#{vm}\""
+		end
+	end
 end
