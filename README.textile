@@ -1,0 +1,5 @@
+h1. Virtaul Box Manager
+
+h2. About
+
+VBM fills a gap in what is otherwise an amazing virtualisation program. The main thing missing from VirtualBox is the ability to have VirtualMachines start up with the host server.
