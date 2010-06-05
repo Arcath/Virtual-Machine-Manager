@@ -1,6 +1,2 @@
 require 'lib/virtualbox'
-
-desc "Lists all Virtual Machines"
-task :list do
-	VirtualMachine.all.map { |vm| puts vm } 
-end
+Dir.glob('rake/*.rake').each { |r| import r }
